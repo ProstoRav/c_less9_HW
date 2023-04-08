@@ -5,7 +5,7 @@ N = 8 -> "8, 7, 6, 5, 4, 3, 2, 1" */
 int CreateNumber()
 {
     int number;
-    Console.Write($"Введите натуральное число N: ");
+    Console.Write($"Введите натуральное число: ");
     int.TryParse(Console.ReadLine()!, out number);
     if (number < 1)
     {
@@ -15,18 +15,18 @@ int CreateNumber()
     return number;
 }
 
-void Fact(int number)
+void AllNumbersFromNumberTo1(int number)
 {
     Console.Write($"{number}, ");
     if (number == 1)
     {
         return;
     }
-    Fact(number - 1);
+    AllNumbersFromNumberTo1(number - 1);
 
 }
 
 int number = CreateNumber();
 Console.Write($"N = {number} -> \"");
-Fact(number);
+AllNumbersFromNumberTo1(number);
 Console.Write($"\b\b\"");
