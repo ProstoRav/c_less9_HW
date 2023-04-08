@@ -5,12 +5,19 @@ m = 3, n = 2 -> A(m,n) = 29 */
 int CreateNumber()
 {
     int number;
-    Console.Write($"Введите натуральное число: ");
-    int.TryParse(Console.ReadLine()!, out number);
+    Console.Write($"Введите неотрицательное целое число: ");
+    bool success = int.TryParse(Console.ReadLine()!, out number);
+    if (!success)
+    {
+        Console.WriteLine($"Ошибка распознавания числа, попробуйте ещё раз");
+        Console.WriteLine();
+        number = CreateNumber();
+    }
     if (number < 0)
     {
-        Console.WriteLine($"Вы ввели не натуральное число, пожалуйста перезапустите программу");
-        Environment.Exit(0);
+        Console.WriteLine($"Вы ввели отрицательное число, попробуйте ещё раз");
+        Console.WriteLine();
+        number = CreateNumber();
     }
     return number;
 }

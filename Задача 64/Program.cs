@@ -6,11 +6,18 @@ int CreateNumber()
 {
     int number;
     Console.Write($"Введите натуральное число: ");
-    int.TryParse(Console.ReadLine()!, out number);
+    bool success = int.TryParse(Console.ReadLine()!, out number);
+    if (!success)
+    {
+        Console.WriteLine($"Ошибка распознавания числа, попробуйте ещё раз");
+        Console.WriteLine();
+        number = CreateNumber();
+    }
     if (number < 1)
     {
-        Console.WriteLine($"Вы ввели не натуральное число или 0, пожалуйста перезапустите программу");
-        Environment.Exit(0);
+        Console.WriteLine($"Вы ввели не натуральное число, попробуйте ещё раз");
+        Console.WriteLine();
+        number = CreateNumber();
     }
     return number;
 }
@@ -30,3 +37,5 @@ int number = CreateNumber();
 Console.Write($"N = {number} -> \"");
 AllNumbersFromNumberTo1(number);
 Console.Write($"\b\b\"");
+
+
